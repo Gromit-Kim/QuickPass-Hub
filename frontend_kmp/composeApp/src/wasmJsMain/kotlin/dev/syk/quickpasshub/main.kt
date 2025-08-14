@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport

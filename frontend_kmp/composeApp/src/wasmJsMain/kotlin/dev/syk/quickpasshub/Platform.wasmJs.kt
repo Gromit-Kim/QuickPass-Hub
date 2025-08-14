@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 class WasmPlatform: Platform {
     override val name: String = "Web with Kotlin/Wasm"

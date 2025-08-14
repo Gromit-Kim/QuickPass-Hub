@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

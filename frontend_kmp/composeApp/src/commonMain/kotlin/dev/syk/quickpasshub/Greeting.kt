@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 class Greeting {
     private val platform = getPlatform()

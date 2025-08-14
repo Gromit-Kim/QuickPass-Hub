@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image

@@ -1,4 +1,4 @@
-package dev.soyeonkim.qucikpasshub
+package dev.syk.quickpasshub
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
