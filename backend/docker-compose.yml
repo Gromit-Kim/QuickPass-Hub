@@ -1,0 +1,13 @@
+services:
+  postgres-dev:
+    image: postgres:17
+    container_name: quickpass-postgres-dev
+    restart: always
+    environment:
+      POSTGRES_DB: quickpasshub_dev
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432" # host_port : container_port
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
