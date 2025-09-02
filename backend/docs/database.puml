@@ -1,0 +1,64 @@
+@startuml database.puml
+
+entity Exam {
+  **exam_id** : integer <<PK>>
+  --
+  **name** : varchar
+  **type** : varchar <<ENUM>>('필기','실기')
+  **total_questions** : integer
+  **time_limit** : integer
+}
+
+entity Question {
+  **question_id** : integer <<PK>>
+  --
+  **exam_id** : integer <<FK>>
+  **text** : text
+  **type** : varchar <<ENUM>>('객관식', '주관식')
+  **explanation** : text
+  **verified** : boolean
+}
+
+entity Choice {
+  **choice_id** : integer <<PK>>
+  --
+  **question_id** : integer <<FK>>
+  **text** : text
+  **is_correct** : boolean
+}
+
+entity User {
+  **user_id** : integer <<PK>>
+  --
+  **name** : varchar
+  **email** : varchar
+  **password** : varchar
+  **role** : varchar <<ENUM>>('user', 'admin')
+}
+
+entity UserAnswer {
+  **user_answer_id** : integer <<PK>>
+  --
+  **user_id** : integer <<FK>>
+  **question_id** : integer <<FK>>
+  **selected_choice** : integer
+  **is_correct** : boolean
+}
+
+entity ExamResult {
+  **result_id** : integer <<PK>>
+  --
+  **user_id** : integer <<FK>>
+  **exam_id** : integer <<FK>>
+  **score** : integer
+  **date** : datetime
+}
+
+Exam "1" -- "0..*" Question : has
+Question "1" -- "0..*" Choice : has
+Question "1" -- "0..*" UserAnswer : answers
+User "1" -- "0..*" UserAnswer : provides
+User "1" -- "0..*" ExamResult : has
+Exam "1" -- "0..*" ExamResult : has
+
+@enduml
