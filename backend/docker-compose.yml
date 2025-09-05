@@ -1,3 +1,4 @@
+# version: '3.9' # 이제 deprecated됨.
 services:
   postgres-dev:
     image: postgres:17
