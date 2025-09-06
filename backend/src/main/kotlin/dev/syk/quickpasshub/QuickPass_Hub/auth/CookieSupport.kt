@@ -14,7 +14,7 @@ class CookieSupport {
         sameSite: String = "Lax",
         path: String = "/",
         maxAge: Duration = Duration.ofDays(14)
-    ) : HttpCookie =
+    ) : ResponseCookie =
         ResponseCookie
             .from("refresh", token)
             .httpOnly(true)
@@ -28,7 +28,7 @@ class CookieSupport {
         secure: Boolean = false,
         sameSite : String = "Lax",
         path: String = "/",
-    ) : HttpCookie =
+    ) : ResponseCookie =
         ResponseCookie
             .from("refresh", "")
             .httpOnly(true)
