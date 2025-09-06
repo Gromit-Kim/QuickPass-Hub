@@ -11,7 +11,7 @@ import org.springframework.web.context.request.NativeWebRequest
 
 @Controller
 class AuthResolver(
-    private val tokenService: TokenService,
+    private val authService: AuthService,
     private val cookieSupport: CookieSupport,
 ) {
 
@@ -21,19 +21,12 @@ class AuthResolver(
         @Argument password: String,
         web: NativeWebRequest,
     ) : LoginPayload{
-        // 1. 임시 인증 (-> DB, BCrypt로 교체 필요)
-        val ok : Boolean = (email=="a@gmail.com"&&password=="1234")
-        if(!ok)
-            throw IllegalArgumentException("BAD CREDENTIALS")
 
-        // 2 토큰 발급
-        val access = tokenService.createAccessToken(email)
-        val refresh = tokenService.createRefreshToken(email)
+        val tokens: AuthService.Tokens = authService.login(email, password)
 
-        // 3. HttpOnly Refresh Cookie Setting
         val res : HttpServletResponse  = web.getNativeResponse(HttpServletResponse::class.java)!!
         val cookie = cookieSupport.writeRefreshTokenCookie(
-            refresh,
+            tokens.refreshToken,
             false, // local은 false, 운영(HTTPS)는 true
             "Lax", // 필요시 Strict 혹은 cross-site면 None (+ secure=true 필수)
             "/"
@@ -41,7 +34,7 @@ class AuthResolver(
         res.addHeader(HttpHeaders.SET_COOKIE, cookie.toString())
 
         // 4. Access 는 바디로 반환
-        return LoginPayload(access)
+        return LoginPayload(tokens.accessToken)
     }
 
 }
