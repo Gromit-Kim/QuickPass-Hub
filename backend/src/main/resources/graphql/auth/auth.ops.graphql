@@ -3,6 +3,7 @@ extend type Query {
 }
 
 extend type Mutation {
+    register(input: RegisterInput!) : LoginPayLoad!
     login(email: String!, password: String!) : LoginPayLoad!
     refresh: LoginPayLoad!
     logout: Boolean!

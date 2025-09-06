@@ -6,3 +6,10 @@ type UserInfo {
     userId: ID!
     roles: [String!]!
 }
+
+input RegisterInput{
+    name: String!
+    email: String!
+    password: String!
+    role: String = "USER" # 기본 USER(ADMIN은 필요 시에만)
+}
