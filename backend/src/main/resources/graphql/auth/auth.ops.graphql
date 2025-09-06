@@ -1,0 +1,9 @@
+extend type Query {
+    userInfo: UserInfo!
+}
+
+extend type Mutation {
+    login(email: String!, password: String!) : LoginPayLoad!
+    refresh: LoginPayLoad!
+    logout: Boolean!
+}

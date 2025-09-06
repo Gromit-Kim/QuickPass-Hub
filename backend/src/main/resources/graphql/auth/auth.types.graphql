@@ -1,0 +1,8 @@
+type LoginPayLoad{
+    accessToken: String!
+}
+
+type UserInfo {
+    userId: ID!
+    roles: [String!]!
+}
