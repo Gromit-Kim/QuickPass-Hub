@@ -1,4 +1,4 @@
-package dev.syk.quickpasshub.core
+package dev.syk.quickpasshub
 
 interface Platform {
     val name: String
